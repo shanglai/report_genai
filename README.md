@@ -15,7 +15,10 @@ A multi-agent system with compartmented roles, delimited tasks, evolving knowled
 
 * the agents are defined with <agent> and the inputs and outputs by brackets [element]:
 TASKS: given a certain data and certain context and auxiliary datasets and policies, generate a report that tells the story within the data by transforming (summarizing, deriving, pivoting) the data into other datasets and then generate according visualizations, interpretations and conclusions.
-STRUCTURE: 
+
+![report_genai_structure](https://github.com/user-attachments/assets/b31fe4e1-342f-487f-bddb-f6faffc0664c)
+
+## STRUCTURE: 
 * there is a main AI Agent, called <mainAI>. <mainAI> understands the dataset with a given context. it also understands the given policies as restrictions, biases and directions that must be applied to the data. <mainAI> gives instructions in sequence to the following agents:
 * there's an agent that records inconsistencies or anomalies found when <mainAI> integrates new knowledge, it's called <auditAI>.
 * there's an agent responsible for interpreting policies and generating summarized, clear text that constitute restrictions, bias and focus of the reports, it's called <policyAI>.
@@ -23,7 +26,8 @@ STRUCTURE:
 * there's another agent called <interpreterAI> that interprets the data from <dataAI> and gets context from <mainAI> on what kind of interpretations it requires. output is simple text.
 * another agent is <vizAI>, which generates visualizations (bar, point, line or box plots) using <mainAI> context and <interpreterAI>'s interpretations.
 * another agent is <reportAI>, which specializes on generating coherent reports with cover, index, formatting, sections (introduction, summary, dcontent, conclusion, next steps), while also presenting everything in a professional and dynamic style and highlighting important insights.
-PROCESS:
+
+## PROCESS:
 * <mainAI> gets the [original dataset], [context of the data], [policies and bias], generates an [understanding] of the main dataset. the [understanding] is the complete understanding of the data, interpretations, policies, bias, focus and other elements surrounding the data, enabling <mainAI> to dictate new knowledge and incorporate it to itself, turning <mainAI> into a subject matter expert by a continuous cycle of giving instructions, integration of data and reflection on it to refine understanding.
 * when <mainIA> finds inconsistent, conflicting or anomalous data in *ANY* of the steps in the process when it tries to integrate knowledge into [understanding], it tries to either a. solve the conflict or b. discard the data, and sends and [audit incident] to <auditAI>, which records it. the [audit incident] describes in detail the step of the process where it was found, the <AI> that generated it, the <AI> that detected it, the description of the incident, the reason of why it's an incident (conflict, inconsistency, anomaly or other), possible workarounds or information needed to solve it.
 * <mainAI> sends [policies, bias and focus] to <policyAI>, which interprets them and generates concise, well-defined outputs: [policies] defines an organization's policies (ie. "price for X item must never be lower than $50#, or "revenue goals are $50 million for this Q"), [bias] define an organization's restrictions (ie. "though it's an energy company, we don't involve in fracking endeavours because of environmental concerns"), [focus] details an organization's direction (ie. "we want to grow new business in South Asia this year").
@@ -37,7 +41,7 @@ PROCESS:
 * <mainAI> uses the [understanding] to generate a [conclusion] on the data, highlighting insights by the following categories: critical, important and relevant. it also generates [next steps] as follow-up activities.
 * <mainAI> sends [understanding], [dataset 1] , ..., [dataset N], [interpretation 1], ..., [interpretation N], [viz 1], ..., [viz N], [conclusion] and [next steps] to <reportAI> which generates a coherent [final report], by: analyzing the assets (datasets, insights, visualizations, etc), setting the report layout, ordering the assets within the layout, generating the report with a professional and dynamic style.
 * finally, <auditAI> generates a separate [anomaly report] with all the anomalies it has recorded, with the same style as found in the [final report].
-ADDITIONAL DEFINITIONS:
+## ADDITIONAL DEFINITIONS:
 * [understanding] is a JSON-formatted string, with the following layout as a base (layout can change depending on the evolution of [understanding] and of <mainAI> as an SME:
 {
   "context": "...",
@@ -50,7 +54,7 @@ ADDITIONAL DEFINITIONS:
 * [policies], [bias] and [focus] are also JSON-formatted strings, example:
 {"biases": ["focus on minority groups"]}
 
-
+## Flow
 
 flowchart TD
     A[original dataset, context, policies] --> M1[<mainAI> generates understanding]
